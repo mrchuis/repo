@@ -1,21 +1,19 @@
+class Printer {
+  static final Printer _singleton = Printer._construct();
+  factory Printer() => _singleton;
+
+  Printer._construct() {
+    print('private constructor');
+  }
+
+  printSomething(String text) {
+    print(text);
+  }
+}
+
 void main(List<String> arguments) {
-  var point = Point(4,6);
-  point.show();
-  hello('Anton');
+  Printer().printSomething("this");
+  Printer().printSomething("and");
+  Printer().printSomething("that");
 }
 
-class Point{
-  num x, y;
-  Point(this.x, this.y);
-  Point.origin() {
-    x = 0;
-    y = 0;
-  }
-  show() {
-    print("x = $x\ny = $y");
-  }
-}
-
-hello(name) {
-  print('Hello, $name');
-}
