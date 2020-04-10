@@ -1,6 +1,7 @@
 void main(List<String> arguments) {
-  var point = Point(5,5);
+  var point = Point(4,6);
   point.show();
+  hello('Anton');
 }
 
 class Point{
@@ -13,4 +14,8 @@ class Point{
   show() {
     print("x = $x\ny = $y");
   }
+}
+
+hello(name) {
+  print('Hello, $name');
 }
