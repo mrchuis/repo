@@ -1,17 +1,18 @@
-class Logger {
-  void log(dynamic v) {
-    print(DateTime.now().toString() + ' ' + v);
-  }
-}
 
 void main(List<String> arguments) {
-  new Logger().log('program started');
-  new Logger().log('doing something');
-  new Logger().log('program finished');
+  Map<String,String> stringNameByState = {
+    "Msk": "Moscow",
+    "St": "Petersburg",
+    "Ek": "Ekaterinburg",
+    "Now": "Nowgorod"
+  };
 
-  new Logger()
-    ..log('ha')
-    ..log('ms')
-    ..log('ster');
+  stringNameByState["Ta"] = "Tagil";
+
+  for (var key in stringNameByState.keys) {
+    print(stringNameByState[key]);    
+  }
+
+  print("\nGet just one:${stringNameByState["St"]}");
 }
 
