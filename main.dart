@@ -1,19 +1,17 @@
-class Printer {
-  static final Printer _singleton = Printer._construct();
-  factory Printer() => _singleton;
-
-  Printer._construct() {
-    print('private constructor');
-  }
-
-  printSomething(String text) {
-    print(text);
+class Logger {
+  void log(dynamic v) {
+    print(DateTime.now().toString() + ' ' + v);
   }
 }
 
 void main(List<String> arguments) {
-  Printer().printSomething("this");
-  Printer().printSomething("and");
-  Printer().printSomething("that");
+  new Logger().log('program started');
+  new Logger().log('doing something');
+  new Logger().log('program finished');
+
+  new Logger()
+    ..log('ha')
+    ..log('ms')
+    ..log('ster');
 }
 
