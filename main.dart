@@ -1,51 +1,31 @@
+import 'dart:async';
+
+String countUp(int count) {
+  print('Start count up');
+  StringBuffer sb = new StringBuffer();
+  for (int i = 0; i < count; i++) {
+    sb.write('${i} ');
+  }
+  print('finish count up');
+  return sb.toString();
+}
+
+Future<String> createFutureCounter(int count) {
+  return new Future(() { return countUp(count); });
+}
 
 void main(List<String> arguments) {
-  print('start');
-  List<Cadet> cadetList = [
-    Cadet("Tom", 21),
-    Cadet("Dick", 31),
-    Cadet("Alis", 54),
-    Cadet("Mark", 48)
-  ];
-
-  List<Cadet> validCadetList = [];
-  for (Cadet cadet in cadetList) {
-    try {
-      validateCadet(cadet);
-      validCadetList.add(cadet);
-    } on TooOldForServiceExeption catch(ex) {
-      print(ex);
-    }
-  }
-
-  print('finish: ${validCadetList.length} of ${cadetList.length} cadets are valid.');
+  print('start main');
+  Future<String> future = createFutureCounter(100);
+  print('adding Future API callbacks');
+  future.then((value) => handleCompletion(value));
+  print('finish main');
 }
 
-void validateCadet(Cadet cadet) {
-  if (cadet.age > 45) {
-    throw new TooOldForServiceExeption(cadet);
-  }
+void handleError(err) {
+  print('Async operation errored: $err');
 }
 
-class Cadet {
-  String _name;
-  int _age;
-
-  Cadet(this._name, this._age);
-
-  get age => _age;
-  get name => _name;
+void handleCompletion(value) {
+  print('Aync  operation succeeded: $value');
 }
-
-class TooOldForServiceExeption implements Exception {
-  Cadet _cadet;
-
-  TooOldForServiceExeption(this._cadet);
-
-  toString() {
-    return "${_cadet.name} is too old to be in military service.";
-  }
-}
-
-
-
